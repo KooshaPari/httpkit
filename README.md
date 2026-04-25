@@ -124,6 +124,12 @@ cargo test --test '*'
 cargo llvm-cov --html
 ```
 
+## Related Phenotype Projects
+
+- **[cloud](../cloud/)** — Multi-tenant SaaS using Httpora middleware stack
+- **[PhenoDevOps](../PhenoDevOps/)** — HTTP-based service orchestration via Httpora
+- **[agentapi-plusplus](../agentapi-plusplus/)** — Multi-model gateway with Httpora client
+
 ## Links
 
 - **Docs**: [https://docs.rs/httpkit](https://docs.rs/httpkit) (pending publication)
