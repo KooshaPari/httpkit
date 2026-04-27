@@ -41,4 +41,15 @@ jobs:
       
 
   phenotype-validate:
-    uses: KooshaPari/phenotypeActions/.github/workflows/validate-governance.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate governance docs
+        run: |
+          test -s AGENTS.md
+          test -s CLAUDE.md
+          test -s SECURITY.md
+          test -s CODEOWNERS
+          test -s .github/CODEOWNERS
+          ! grep -R -E "^(<<<<<<<|=======|>>>>>>>)" .github AGENTS.md CLAUDE.md SECURITY.md CODEOWNERS
