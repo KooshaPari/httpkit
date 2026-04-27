@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.head_commit.message, 'release:') || contains(github.event.head_commit.message, 'chore(release)')
     outputs:
-      version: $123steps.version.outputs.version125
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -40,11 +40,11 @@ jobs:
         id: version
         run: |
           VERSION=$(grep '^version' pyproject.toml | cut -d'"' -f2)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Publish to PyPI
         run: |
-          twine upload dist/* -u __token__ -p $123secrets.PYPI_API_TOKEN125
+          twine upload dist/* -u __token__ -p "${{ secrets.PYPI_API_TOKEN }}"
       
 
   promote:
@@ -56,6 +56,6 @@ jobs:
       - name: Promote to staging
         uses: KooshaPari/phenotypeActions/promote@main
         with:
-          version: $123needs.release.outputs.version125
+          version: ${{ needs.release.outputs.version }}
           channel: beta
           registry: pypi

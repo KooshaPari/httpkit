@@ -24,7 +24,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: $123matrix.python-version125
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
@@ -41,5 +41,4 @@ jobs:
       
 
   phenotype-validate:
-    runs-on: ubuntu-latest
     uses: KooshaPari/phenotypeActions/.github/workflows/validate-governance.yml@main
